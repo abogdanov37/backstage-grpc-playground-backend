@@ -7,6 +7,13 @@ export interface Config {
       enabled?: boolean;
 
       /**
+       * Command to run protoc
+       */
+      protoc?: {
+        command?: string;
+      }
+
+      /**
        * Install protoc-gen-doc from github
        */
       protocGenDoc?: {
@@ -21,6 +28,7 @@ export interface Config {
         ttlInMinutes: number;
       };
     };
+    
     certStore?: {
       /**
        * @visibility frontend

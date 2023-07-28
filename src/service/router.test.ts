@@ -32,7 +32,7 @@ function createDatabase(): PluginDatabaseManager {
         },
       },
     }),
-  ).forPlugin('backstage-grpc-playground-backend');
+  ).forPlugin('backstage-grpc-playground-backend-new');
 }
 
 describe('createRouter', () => {

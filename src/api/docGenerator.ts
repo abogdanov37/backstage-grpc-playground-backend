@@ -10,6 +10,9 @@ import os from 'os';
 
 export interface GenDocConfig {
   enabled?: boolean;
+  protoc?: {
+    command?: string;
+  }
   useCache?: {
     enabled: boolean;
     ttlInMinutes: number;
@@ -225,8 +228,13 @@ export async function genDoc(protoPath: string, imports?: string[], genDocConfig
     }
   }
 
+  let protocCommand = genDocConfig?.protoc?.command;
+  if (protocCommand == null || protocCommand.length == 0) {
+    protocCommand = `yarn run --top-level protoc`;
+  } 
+
   let command = `cd ${protoDir} \
-      && yarn run --top-level protoc --doc_out=${protoDir} --doc_opt=markdown,${docPath}`;
+      && ${protocCommand} --doc_out=${protoDir} --doc_opt=markdown,${docPath}`;
 
   if (imports) {
     imports.forEach((dir) => {
